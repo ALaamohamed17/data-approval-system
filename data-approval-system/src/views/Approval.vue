@@ -52,12 +52,7 @@ import axios from "axios";
 
 import { ref, onMounted } from "vue";
 
-const entries = ref([]);
 
-onMounted(() => {
-  const saved = JSON.parse(localStorage.getItem("entries")) || [];
-  entries.value = saved;
-});
 
 const pendingEntries = ref([]);
 
@@ -91,22 +86,6 @@ async function rejectEntry(index) {
 }
 
 
-function updateLocalStorage(updatedItem) {
-  const saved = JSON.parse(localStorage.getItem("entries")) || [];
-  const index = saved.findIndex(
-    (e) =>
-      e.category === updatedItem.category &&
-      e.amount === updatedItem.amount &&
-      e.date === updatedItem.date
-  );
-  if (index !== -1) {
-    saved[index] = updatedItem;
-    localStorage.setItem("entries", JSON.stringify(saved));
-  }
-
-  pendingEntries.value = saved.filter((e) => e.status === "Pending");
-  alert(`✅ Status updated: ${updatedItem.status}`);
-}
 </script>
 
 <style scoped>

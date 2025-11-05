@@ -5,13 +5,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let entries = []; // هنا هنخزن البيانات مؤقتًا في الذاكرة
+let entries = []; 
 
-// ✅ إضافة إدخال جديد
+
 app.post("/api/entries", (req, res) => {
   const entry = req.body;
 
-  // تحقق بسيط
+
   if (!entry.category || !entry.amount || !entry.date) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -23,12 +23,12 @@ app.post("/api/entries", (req, res) => {
   res.json({ message: "Entry added successfully", entry });
 });
 
-// 📋 جلب كل الإدخالات
+
 app.get("/api/entries", (req, res) => {
   res.json(entries);
 });
 
-// ✅ الموافقة على إدخال
+
 app.put("/api/entries/:id/approve", (req, res) => {
   const id = Number(req.params.id);
   const entry = entries.find((e) => e.id === id);
@@ -38,7 +38,7 @@ app.put("/api/entries/:id/approve", (req, res) => {
   res.json({ message: "Entry approved", entry });
 });
 
-// ❌ رفض إدخال
+
 app.put("/api/entries/:id/reject", (req, res) => {
   const id = Number(req.params.id);
   const entry = entries.find((e) => e.id === id);
@@ -49,7 +49,6 @@ app.put("/api/entries/:id/reject", (req, res) => {
   res.json({ message: "Entry rejected", entry });
 });
 
-// 📊 إحصائيات بسيطة
 app.get("/api/stats", (req, res) => {
   const total = entries.length;
   const approved = entries.filter((e) => e.status === "Approved").length;

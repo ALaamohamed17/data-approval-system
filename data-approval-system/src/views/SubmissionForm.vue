@@ -64,7 +64,7 @@ const form = reactive({
 
 const message = ref("");
 
-// مثال بسيط لحساب قيمة إضافية
+
 const calculatedValue = computed(() => {
   return form.amount ? (form.amount * 1.1).toFixed(2) : "—";
 });
@@ -97,7 +97,7 @@ async function handleSubmit() {
     console.log("✅ Sent to backend:", res.data);
     message.value = "✅ Entry submitted successfully!";
 
-    // reset
+
     form.category = "";
     form.amount = null;
     form.date = "";

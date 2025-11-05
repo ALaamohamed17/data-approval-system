@@ -101,13 +101,13 @@ onMounted(async () => {
 
 
 
-// فلترة الإدخالات حسب الحالة
+
 const filteredEntries = computed(() => {
   if (!selectedStatus.value) return entries.value;
   return entries.value.filter((e) => e.status === selectedStatus.value);
 });
 
-// حساب الإجماليات
+
 const totalAmount = computed(() => {
   return filteredEntries.value.reduce((sum, e) => sum + e.amount, 0);
 });
