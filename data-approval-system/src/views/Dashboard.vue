@@ -89,7 +89,7 @@ function goToSubmit() {
   router.push("/submit");
 }
 
-// تحميل البيانات من localStorage
+
 onMounted(async () => {
   try {
     const res = await axios.get("http://localhost:5000/api/entries");
